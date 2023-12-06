@@ -1,0 +1,21 @@
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    function searchWeather() {
+        var city = $('#city-input').val();
+        $.ajax({
+            type: 'POST',
+            url: '{% url "home" %}',
+            data: {
+                'city': city,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function(data) {
+                $('#weather-form').html(data);
+            },
+            error: function(error) {
+                alert("City information is not available to Weather API");
+        
+            }
+        });
+    }
+  </script>
